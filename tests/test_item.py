@@ -20,3 +20,23 @@ def test_item_initialized(Item5):
     assert Item5.name == 'stol'
     assert Item5.price == 12.2
     assert Item5.quantity == 10
+
+
+def test_instantiate_from_csv(Item5):
+    Item.instantiate_from_csv()
+    assert len(Item.all) == 5
+
+
+def test_string_to_number(Item5):
+    assert Item.string_to_number('5') == 5
+    assert Item.string_to_number('5.0') == 5
+    assert Item.string_to_number('5.5') == 5
+
+
+
+def test_name(Item5):
+    Item5.name = 'Смартфон'
+    assert Item5.name == 'Смартфон'
+
+    Item5.name = '123456789123'
+    assert Item5.name == '1234567891'
