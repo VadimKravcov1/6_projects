@@ -21,6 +21,14 @@ class Item:
         #Item.all.append(f'Item({self.__name},{self.price},{self.quantity})')
 
 
+    def __repr__(self):
+        return f"Item('{self.__name}', {self.price}, {self.quantity})"
+
+
+    def __str__(self):
+        return f'{self.__name}'
+
+
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
@@ -75,7 +83,7 @@ class Item:
             reader = csv.DictReader(csvfile)
 
             for row in reader:
-                Item.all.append(Item(row['name'], float(row['price']), int(row['quantity'])))
+                cls.all.append(Item(row['name'], float(row['price']), int(row['quantity'])))
 
     @staticmethod
     def string_to_number(numb):

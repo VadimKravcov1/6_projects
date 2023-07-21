@@ -40,3 +40,11 @@ def test_name(Item5):
 
     Item5.name = '123456789123'
     assert Item5.name == '1234567891'
+
+
+def test_repr(Item5):
+    assert repr(Item5) == "Item('stol', 12.2, 10)"
+
+
+def test_str(Item5):
+    assert str(Item5) == 'stol'
