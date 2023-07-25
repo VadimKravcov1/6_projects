@@ -2,6 +2,7 @@
 
 import pytest
 from src.item import *
+from src.phone import Phone
 
 @pytest.fixture
 def Item5():
@@ -48,3 +49,45 @@ def test_repr(Item5):
 
 def test_str(Item5):
     assert str(Item5) == 'stol'
+
+
+def test_add(Item5):
+    phone1 = Phone("iPhone 14", 120_000, 5, 2)
+    assert Item5 + phone1 == 15
+    assert phone1 + phone1 == 10
+
+
+def test_item_add(Item5):
+    with pytest.raises(ValueError):
+        Item5+10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
