@@ -1,3 +1,8 @@
+import csv
+
+class InstantiateCSVError(Exception):
+    pass
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -79,15 +84,28 @@ class Item:
 # assert emp1.name == '1234567891'
 # print(emp1.name)
 
+
     @classmethod
     def instantiate_from_csv(cls):
-        import csv
-
+        counter = 0
         with open('/home/vadim/PycharmProjects/6_projects/src/items.csv', newline='', encoding="cp1251") as csvfile:
             reader = csv.DictReader(csvfile)
 
             for row in reader:
                 cls.all.append(Item(row['name'], float(row['price']), int(row['quantity'])))
+                counter+=1
+
+
+            import os
+            path_to_file = '/home/vadim/PycharmProjects/6_projects/src/items.csv'
+            if os.path.exists(path_to_file):
+                pass # файл существует
+            else:
+                raise FileNotFoundError("Отсутствует файл item.csv")
+
+            if counter<5:
+                raise InstantiateCSVError("Файл item.csv поврежден")
+
 
     @staticmethod
     def string_to_number(numb):
@@ -100,9 +118,10 @@ class Item:
 
 
 
-
-
-
+# cl = InstantiateCSVError('Items.csv')
+# it = Item
+# it.instantiate_from_csv()
+# print(it.all)
 
 
 
