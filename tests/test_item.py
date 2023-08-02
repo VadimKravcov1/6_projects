@@ -61,7 +61,13 @@ def test_item_add(Item5):
     with pytest.raises(ValueError):
         Item5+10
 
+def test_instantiate_from_csv1(Item5):
+    with pytest.raises(FileNotFoundError):
+        Item5.instantiate_from_csv(filename='/home/vadim/PycharmProjects/6_projects/tests/Itemss.csv')
 
+def test_instantiate_from_csv2(Item5):
+    with pytest.raises(InstantiateCSVError):
+        Item5.instantiate_from_csv(filename='/home/vadim/PycharmProjects/6_projects/tests/Items.csv')
 
 
 

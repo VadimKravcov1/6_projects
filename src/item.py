@@ -86,22 +86,21 @@ class Item:
 
 
     @classmethod
-    def instantiate_from_csv(cls):
+    def instantiate_from_csv(cls, filename='/home/vadim/PycharmProjects/6_projects/src/items.csv'):
         counter = 0
-        with open('/home/vadim/PycharmProjects/6_projects/src/items.csv', newline='', encoding="cp1251") as csvfile:
+
+        import os
+        path_to_file = filename
+        if not os.path.exists(path_to_file):
+            raise FileNotFoundError("Отсутствует файл item.csv")
+
+        with open(filename, newline='', encoding="cp1251") as csvfile:
             reader = csv.DictReader(csvfile)
 
             for row in reader:
                 cls.all.append(Item(row['name'], float(row['price']), int(row['quantity'])))
                 counter+=1
 
-
-            import os
-            path_to_file = '/home/vadim/PycharmProjects/6_projects/src/items.csv'
-            if os.path.exists(path_to_file):
-                pass # файл существует
-            else:
-                raise FileNotFoundError("Отсутствует файл item.csv")
 
             if counter<5:
                 raise InstantiateCSVError("Файл item.csv поврежден")
